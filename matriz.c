@@ -27,6 +27,19 @@ void modificaElemento (Matriz* mat, int linha, int coluna, int elem){
 
 }
 
+int recuperaElemento(Matriz* mat, int linha, int coluna){
+  return mat->ppMat[linha][coluna];
+
+}
+
+int recuperaNColunas (Matriz* mat){
+  return mat->colunas;
+}
+
+int recuperaNLinhas (Matriz* mat){
+  return mat->linhas;
+}
+
 void imprimeMatriz (Matriz* mat){
   int i=0, j=0;
 
@@ -54,13 +67,15 @@ Matriz* transposta (Matriz* mat){
 }
 
 Matriz* multiplicacao (Matriz* mat1, Matriz* mat2){
-  int i=0, j=0, k=0, t=0;
+  int i=0, j=0, k=0;
 
   Matriz* mlt = inicializaMatriz (mat1->linhas, mat2->colunas);
 
   for (i=0; i<mat1->linhas; i++){
     for (j=0; j<mat2->colunas; j++){
-      for (k=0; k<mat2->colunas; k++)
+      mlt->ppMat[i][j] = 0;
+
+      for (k=0; k<mat1->colunas; k++)
         mlt->ppMat[i][j] += ((mat1->ppMat[i][k])*(mat2->ppMat[k][j]));
     }
   }
